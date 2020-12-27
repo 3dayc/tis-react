@@ -38,4 +38,38 @@
 </html>
 
 <!-- react 플러그인 include   -->
-<!-- 주의: 사이트를 배포할 때는 'development.js'를 'production.min.js'로 대체하세요. -->
+<!-- 주의: 사이트를 배포할 때는 "development.js"를 "production.min.js"로 대체하세요. -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js">/* JSX를 자바스크립트로 변환 */</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.12.0/umd/react.development.js"> /* import { React} from "react"; */</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.11.0/umd/react-dom.development.js">/* import { ReactDOM } from "react-dom"; */</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.0.5/redux.js"> /* import {Redux} from "redux"; */ </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-redux/7.2.2/react-redux.js">/* import {ReactRedux} from "react-redux"; */</script>
+<script type="text/babel">
+    //import React from "react";
+    //import ReactDOM from "react-dom"
+    
+    console.log(React);
+    console.log(ReactDOM);
+    
+    class HelloWorld extends React.Component {
+        render() {
+            return (
+                <div>
+                    Hello, react world!!! {this.props.index} - component
+                </div>
+            );
+        }
+    }
+    
+    ReactDOM.render(
+        <React.Fragment>
+            <HelloWorld index={1}></HelloWorld>
+            <HelloWorld index={2}></HelloWorld>
+            <HelloWorld index={3}></HelloWorld>
+            <HelloWorld index={4}></HelloWorld>
+            <HelloWorld index={5}></HelloWorld>
+        </React.Fragment>
+        , 
+        document.getElementById("app")
+    )
+</script>

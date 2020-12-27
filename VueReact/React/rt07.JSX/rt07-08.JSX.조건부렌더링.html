@@ -25,7 +25,13 @@
             Greeting 컴포넌트에서 GuestGreeting 컴포넌트로 모든 props를 넘기시오.
         
         Greeting 컴포넌트의 인자로 isLoggedIn 을 넘긴다.  
-        isLoggedIn 값으로는 true 를 넘기도록 설정하시오. 
+        isLoggedIn 값으로는 true 를 넘기도록 설정하시오.
+        
+        작업 순서.
+        1. UserGreeting 컴포넌트 만들기
+        2. GuestGreeting 컴포넌트 만들기
+        3. Greeting 컴포넌트 만들기
+        4. 화면에 Greeting 컴포넌트 붙이기 
     </xmp>
     <hr>
 
@@ -35,6 +41,47 @@
 </html>
 
 <!-- react 플러그인 include   -->
-<!-- 주의: 사이트를 배포할 때는 'development.js'를 'production.min.js'로 대체하세요. -->
-
-
+<!-- 주의: 사이트를 배포할 때는 "development.js"를 "production.min.js"로 대체하세요. -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js">/* JSX를 자바스크립트로 변환 */</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.12.0/umd/react.development.js"> /* import { React} from "react"; */</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.11.0/umd/react-dom.development.js">/* import { ReactDOM } from "react-dom"; */</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.0.5/redux.js"> /* import {Redux} from "redux"; */ </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-redux/7.2.2/react-redux.js">/* import {ReactRedux} from "react-redux"; */</script>
+<script type="text/babel">
+    //import React from "react";
+    //import ReactDOM from "react-dom"
+    
+    console.log(React);
+    console.log(ReactDOM);
+    
+    class UserGreeting extends React.Component {
+        render() {
+            debugger;
+            return (
+                <h1>Welcome back! isLoggedIn : {this.props.isLoggedIn + ""}</h1>
+            );
+        }
+    }    
+    class GuestGreeting extends React.Component {
+        render() {
+            return (
+                <h1>Please sign up. isLoggedIn : {this.props.isLoggedIn + ""}</h1>
+            );
+        }
+    }
+    class Greeting extends React.Component {
+        render() {
+            const isLoggedIn = this.props.isLoggedIn;
+            if (isLoggedIn) {
+                return <UserGreeting {...this.props} />;
+            }
+            else {
+                return <GuestGreeting {...this.props} />;
+            }
+        }
+    }
+    ReactDOM.render(
+        <Greeting isLoggedIn={false} ></Greeting>, document.getElementById("app")
+    )
+    
+</script>
