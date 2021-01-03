@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>객체 리터럴 셀프 참조</title>
+</head>
+
+<body>
+    <xmp>
+
+    Self-references in object literals
+
+
+    문제점:
+
+        var lit = {
+            a: 'a',
+            b: this.a + 'b'
+        }
+        console.log(lit.a); // "a"
+        console.log(lit.b); // "ab" 가 출력되나요?
+
+
+    원인:
+        리터럴을 사용한 객체 생성으로는 자신을 참조하는 값에 대한 원하시는 값을 얻을 수 없습니다.
+        아래 코드에서 에러가 발생하는 이유는 b: lit.a+'b'를 수행하는 시점에 아직 lit가 존재하지 않기 때문입니다.
+        이문제를 해결하기 위해서는 객체 생성 후 실행되게 하면 가능한데, 이것을 지연실행 또는 함수 호출시 평가 이라고 부릅니다.
+        즉, 함수를 사용하면 됩니다.
+
+
+    해결책:
+        getter 를 사용하면 해결이 가능하다.
+        get 구문은 객체의 프로퍼티를 그 프로퍼티를 가져올 때 호출되는 함수로 바인딩합니다.
+
+
+        https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get
+
+    </xmp>
+</body>
+
+</html>
+
+
+<!-- react 플러그인 include   -->
+<!-- 주의: 사이트를 배포할 때는 "development.js"를 "production.min.js"로 대체하세요. -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js">/* JSX를 자바스크립트로 변환 */</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.12.0/umd/react.development.js"> /* import { React} from "react"; */</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.11.0/umd/react-dom.development.js">/* import { ReactDOM } from "react-dom"; */</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.0.5/redux.js"> /* import {Redux} from "redux"; */ </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-redux/7.2.2/react-redux.js">/* import {ReactRedux} from "react-redux"; */</script>
+<script type="text/babel">
+    //import React from "react";
+    //import ReactDOM from "react-dom"
+    
+    console.log(React);
+    console.log(ReactDOM);
+    
+    class Compstyle extends React.Component {
+        style = {
+            // 컴포넌트 내부에서 사용할 인라인 스타일을 정의한다.
+    
+        }
+        render() {
+            return (
+                <div>
+                    
+                </div>
+            );
+        }
+    }
+    ReactDOM.render(<Compstyle></Compstyle>, document.getElementById"app")
+
+    //export default Compstyle;
+</script>
